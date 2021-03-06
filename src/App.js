@@ -1,12 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import logo from './logo.svg'
+import './App.css'
 
 function App() {
+  const [msg, setMsg] = useState('Default msg')
+
+  const handleEdit = () => setMsg('hi random : ' + Math.random())
   return (
     <div className="App">
       <header className="App-header">
+        msg: {msg}
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
+        <p onClick={handleEdit}>
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <a
@@ -19,7 +24,7 @@ function App() {
         </a>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

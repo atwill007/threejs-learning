@@ -1,36 +1,37 @@
 import React from 'react'
 import './App.css'
 
-import { HashRouter as Router, Switch, Route } from 'react-router-dom'
-import { Layout } from 'antd'
-import { routerList } from './router/index'
+import { Switch, Route, withRouter } from 'react-router-dom'
+import Layout from '@containers/Layout'
 
-function App() {
-  const LayoutJsx = () => (
-    <Layout>
-      <Layout.Header>Header</Layout.Header>
-      <Layout.Content>{routerList}</Layout.Content>
-    </Layout>
-  )
-
-  const register = ({ location }) => {
+// @withRouter
+class App extends React.Component {
+  componentDidMount() {
+    if (!window._router) {
+      window._router = {
+        history: this.props.history,
+        location: this.props.location,
+      }
+    }
+  }
+  render() {
+    const register = ({ location }) => {
+      return (
+        <div>
+          <h2>register</h2>
+          <p>location: {JSON.stringify(location)}</p>
+        </div>
+      )
+    }
     return (
-      <div>
-        <h2>register</h2>
-        <p>location: {JSON.stringify(location)}</p>
+      <div className="App">
+        <Switch>
+          <Route path="/register" exact render={register} />
+          <Route path="/" component={Layout} />
+        </Switch>
       </div>
     )
   }
-  return (
-    <div className="App">
-      <Router>
-        <Switch>
-          <Route path="/register" exact render={register} />
-          <Route path="/" component={LayoutJsx} />
-        </Switch>
-      </Router>
-    </div>
-  )
 }
 
-export default App
+export default withRouter(App)

@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@router/*": [
+        "./src/router/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@helpers/*": [
+        "./src/helpers/*"
+      ]
+    },
+    "experimentalDecorators": true
+  }
+}
